@@ -5,25 +5,35 @@ RESTful API endpoints to manage university students. By Registering Students and
 
 ## All Functional REST API endpoints
 
-[Register Student: POST Method](http://localhost:3000/una/registerStudent/)
+[Register Student: POST Method]
+http://localhost:3000/una/registerStudent
 
-[Login Student: POST Method](http://localhost:3000/una/login)
+[Login Student: POST Method]
+http://localhost:3000/una/login
 
-[Show All Student: GET Method](http://localhost:3000/una/students)
+[Show All Student: GET Method]
+http://localhost:3000/una/students
 
-[Show Single Student: GET Method](http://localhost:3000/una/students/:studentID)
+[Show Single Student: GET Method]
+http://localhost:3000/una/students/:studentID
 
-[Update Single Student: PUT Method](http://localhost:3000/una/student/:studentID)
+[Update Single Student: PUT Method]
+http://localhost:3000/una/student/:studentID
 
-[Delete Single Student: DELETE Method](http://localhost:3000/una/student/:studentID)
+[Delete Single Student: DELETE Method]
+http://localhost:3000/una/student/:studentID
 
-[Add Course: POST Method](http://localhost:3000/una/addCourse/)
+[Add Course: POST Method]
+http://localhost:3000/una/addCourse/
 
-[Show Single Course: GET Method](http://localhost:3000/una/courses/:courseID)
+[Show Single Course: GET Method]
+http://localhost:3000/una/courses/:courseID
 
-[Show Courses Alloted to Single Student: GET Method](http://localhost:3000/una/coursesByStudent/:studentID)
+[Show Courses Alloted to Single Student: GET Method]
+http://localhost:3000/una/coursesByStudent/:studentID
 
-[Show All Courses: GET Method](http://localhost:3000/una/courses)
+[Show All Courses: GET Method]
+http://localhost:3000/una/courses
 
 
 ## Acknowledgement Technical Requirements
