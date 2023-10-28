@@ -58,7 +58,7 @@ const login = async(req, res)=>{
                 if(!passwordCheck){
                     return res.status(404).json({Message: "Incorrect Password"})
                 }else{
-                    const token = jwt.sign({id: student.id, userName: student.userName},process.env.JWT_SECRET);
+                    const token = jwt.sign({id: student.id, userName: student.userName},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRATION});
                     res.status(200).json({
                         accessToken: token
                     });
@@ -77,7 +77,7 @@ const login = async(req, res)=>{
             if(!passCheck){
                 return res.status(404).json({Message: "Incorrect Password"})
             }else{
-                const token = jwt.sign({id: student.id, userName: student.userName},process.env.JWT_SECRET);
+                const token = jwt.sign({id: student.id, userName: student.userName},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRATION});
                 res.status(200).json({
                     accessToken: token
                 });
