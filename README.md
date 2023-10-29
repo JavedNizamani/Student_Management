@@ -67,7 +67,12 @@ http://localhost:3000/una/addCourse/
 [Show Single Course: GET Method]
 http://localhost:3000/una/courses/:courseID
 
+[Add Foreign Keys: POST Method]
+http://localhost:3000/una/addForeignKey
+[StudentId, CourseId]
+
 [Show Courses Alloted to Single Student: GET Method]
+[Note: before running this endpoint, you must first run to Add Foreign Keys endpoint(given above)]
 http://localhost:3000/una/coursesByStudent/:studentID
 
 [Show All Courses: GET Method]

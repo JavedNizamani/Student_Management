@@ -16,6 +16,7 @@ const verifyRegisteredCourses = async (req, res, next)=>{
             res.status(404).json({"Error": `${error}`});
     }
 }
+
 module.exports = {
-    verifyRegisteredCourses     // exported and to be used in endpoints
+    verifyRegisteredCourses    // exported and to be used in endpoints
 }
