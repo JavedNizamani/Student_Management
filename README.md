@@ -14,21 +14,13 @@ Using the Express Framework REST (Representational State Transfer) API, endpoint
 To deploy this project, Go to terminal and write npm init (npm – node package manager) this command will create package.json file for holding all packages. Then install the packages required for the project as below
 
 - express -(npm i express) – this will install  express framework
-
 - express-validator- (npm i express-validator) – this is used for data sanitization
-
 - body-parser -(npm i body-parser) – this is used for parsing request body
-
 - bcrypt -(npm i bcrypt) – for password hash (encrypt the password)
-
 - dotenv -(npm i dotenv) – used for environment variables, to hide data
-
 - jsonwebtoken -(npm i jsonwebtoken) – used to share security b/w two parties
-
 - pg -(npm i pg) – modules for interfacing with postgreSQL
-
 - postgres -(npm i postgres) – A relational database management system
-
 - sequelize -(npm i sequelize) – Sequelize ORM- object relational Mapping
 
 
