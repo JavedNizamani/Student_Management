@@ -25,6 +25,19 @@ To deploy this project, Go to terminal and write npm init (npm – node package 
 
 
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`PORT`
+`PGHOST`
+`PGDATABASE`
+`PGUSER`
+`PGPASSWORD`
+`JWT_SECRET`
+`JWT_EXPIRATION`
+
+
 ## All Functional REST API endpoints
 
 [Register Student: POST Method]
