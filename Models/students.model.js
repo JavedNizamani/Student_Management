@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize, Model)=>{               // function to export Students Model
     class Students extends Model{}
 
-    Students.init({                             // Creating Students Table in Database
+    Students.init({                                             // Creating Students Table in Database
         id:{
             type: Sequelize.INTEGER,
             autoIncrement: true,

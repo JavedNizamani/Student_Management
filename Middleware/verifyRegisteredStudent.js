@@ -1,5 +1,5 @@
-const db = require('../Models/index');
-var dbStudent = db.Students;
+const db = require('../Models/index');                                  // import Models
+var dbStudent = db.Students;                                            // Student Model
 
 const verifyRegisteredStudents = async (req, res, next)=>{
             // function verify username, email and phone number  either exists in database or not
@@ -26,7 +26,6 @@ const verifyRegisteredStudents = async (req, res, next)=>{
                 next();
             }
     }catch(error){
-        // Error in try Block will catch here
         return res.status(404).json({"Error": error});
     }
 }

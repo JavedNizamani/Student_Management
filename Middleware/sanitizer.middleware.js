@@ -9,14 +9,12 @@ const sanitizeStudentsRegisteration = [                 // Array containing Data
     body('password').notEmpty().trim().isLength({min:4}),
     body('confirmPassword').notEmpty().trim().isLength({min:4})
 ]
-
-const sanitizeCourseRegistration = [                // Array containing Data for Sanitization
+const sanitizeCourseRegistration = [                
     body('courseName').isAlphanumeric().trim().toLowerCase().isLength({min:4}).notEmpty(),
     body('credits').isNumeric().trim().isLength({min:1,max:2}).notEmpty(),
     body('subjects').isNumeric().trim().isLength({min:1, max:2}).toLowerCase().notEmpty()
 ]
-
-const sanitizeForeignKeyValues = [                     // Array containing Data for Sanitization
+const sanitizeForeignKeyValues = [                     
     body('StudentId').isNumeric().trim().isLength({min:1, max:2}).notEmpty(),
     body('CourseId').isNumeric().trim().isLength({min:1, max:2}).notEmpty()
 ]
@@ -25,5 +23,5 @@ module.exports = {
     sanitizeStudentsRegisteration,
     sanitizeCourseRegistration,
     sanitizeForeignKeyValues
-            // both arrays be exported for usage in endpoints
+            // all arrays be exported for usage in endpoints
 }

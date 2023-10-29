@@ -1,18 +1,16 @@
-const express = require('express');         // express module
-const route = express.Router();             // create router object
-
-const {auth} = require('../Middleware/login-auth');
+        // All imports
+const express = require('express');         
+const route = express.Router();              
 const {sanitizeCourseRegistration} = require('../Middleware/sanitizer.middleware');
+const {auth} = require('../Middleware/login-auth');
 const {verifyRegisteredCourses} = require('../Middleware/verifyRegisteredCourse');
 const {addCourse, getCourseById, getCourseByStudentId,getAllCourses} = require('../controller/courses.controller');
-            // functions exported from MiddleWare and Controller modules are imported for Routing
-
+            
+    // Course Routes
 route.post('/addCourse',auth,sanitizeCourseRegistration,verifyRegisteredCourses,addCourse);        
-                    // This Route Add Course in Database
-route.get('/courses/:courseID',auth,getCourseById);         // route to show single course
-route.get('/coursesByStudent/:StudentID',auth,getCourseByStudentId);
-                    //show all courses assigned to single Student    
-route.get('/courses',auth,getAllCourses);                   // route to show all courses from Database
+route.get('/courses/:courseID',auth,getCourseById);         
+route.get('/coursesByStudent/:StudentID',auth,getCourseByStudentId);    
+route.get('/courses',auth,getAllCourses);                   
 
 
-module.exports = route;             // route module exported and to be functional at /una endpoint
+module.exports = route;             // export route 

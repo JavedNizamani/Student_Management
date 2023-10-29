@@ -1,11 +1,10 @@
-const db = require('../Models/index');
-var dbCourse = db.Courses;
+const db = require('../Models/index');                          // import Models
+var dbCourse = db.Courses;                                      // Courses Model
 
 const verifyRegisteredCourses = async (req, res, next)=>{
-                            // Function built to find the course in Database for verification purpose
     try{
-        const {courseName} = req.body;
-        const courseExists = await dbCourse.findOne({
+            const {courseName} = req.body;
+            const courseExists = await dbCourse.findOne({
             where:{courseName}
         });
             if(courseExists){
@@ -14,8 +13,7 @@ const verifyRegisteredCourses = async (req, res, next)=>{
                 next();
             }
     }catch(error){
-        // Error in try Block will catch here
-        res.status(404).json({"Error": `${error}`});
+            res.status(404).json({"Error": `${error}`});
     }
 }
 module.exports = {

@@ -1,9 +1,9 @@
-const express = require('express');             // express module
-const route = express.Router();                 // create router object
-
+        // imports
+const express = require('express');             
+const route = express.Router();                 
 const {addForeignKeyValues} = require('../controller/Students_Courses.controller');
-                        // function exported from controller to be used in endpoint
+                        
+    // route to add foreign keys
+route.post('/addForeignKey',addForeignKeyValues);           
 
-route.post('/addForeignKey',addForeignKeyValues);           // router for adding Foreign Keys in tables
-
-module.exports = route                  // route module to be exported 
+module.exports = route                  // export route  

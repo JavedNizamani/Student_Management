@@ -1,20 +1,17 @@
-const db = require('../Models/index');
-const {validationResult} = require('express-validator');
-const Course = db.Courses;
-const Student = db.Students;
+const db = require('../Models/index');                                      // import Models
+const {validationResult} = require('express-validator');                    // Module for Data Sanitization
+const Course = db.Courses;                                                  // Course Model
+const Student = db.Students;                                                // Student Model
 
 const addCourse = async(req, res)=>{
     try{
-        const errors = validationResult(req);
-            // Sanitizing/Validating Data related to course
+        const errors = validationResult(req);                               // Sanitizing course entries
         if(!errors.isEmpty()){
             res.status(404).json({Msg: errors});
             return 
         }
-
-        const {courseName, credits, subjects} = req.body
-        await Course.create({
-            // Add Course into Database
+            const {courseName, credits, subjects} = req.body                     // Add Course into Database
+            await Course.create({
             courseName: courseName,
             credits: credits,
             subjects: subjects
@@ -22,15 +19,13 @@ const addCourse = async(req, res)=>{
             return res.status(201).json({"Course": 'Successfully Saved'});
         });
     }catch(error){
-        // Error in try Block will catch here
         res.status(404).json({"Error": `${error}`});
     }   
 }
 
 const getCourseById = async(req, res)=>{
     try{
-        await Course.findOne({
-            // Find Course by Id and shown by their attributes
+            await Course.findOne({                                          // find course by id
             where:{
                 id: req.params.courseID
             },
@@ -39,16 +34,14 @@ const getCourseById = async(req, res)=>{
             return res.status(200).json({"Single Course": result});
         });
     }catch(error){
-        // Error in try Block will catch here
         res.status(404).json({"Error": `${error}`});
     }
 }
 
-const getCourseByStudentId = async(req, res)=>{
+const getCourseByStudentId = async(req, res)=>{         // Enter student id and get all courses allotted to that student
     try{
         const id = req.params.StudentID;
             await Student.findOne({
-                // find student id and get all courses allotted to that student
             where:{
                 id: id
             },
@@ -60,20 +53,17 @@ const getCourseByStudentId = async(req, res)=>{
             return res.status(200).json({"Course by Student": data});
         });
     }catch(error){
-        // Error in try Block will catch here
-        return res.status(404).json({"Error": `${error}`});
+            return res.status(404).json({"Error": `${error}`});
     }
 }
 
-const getAllCourses = async(req, res)=>{
+const getAllCourses = async(req, res)=>{                        // find all course in database
     try{
             await Course.findAll({attributes:['courseName','credits','subjects']}).then((result)=>{
-                // find all courses and show them according to their attributes
             return res.status(200).json({"List of All Courses": result});
             });
     }catch(error){
-        // Error in try Block will catch here
-        res.status(404).json({"Error":error});
+            res.status(404).json({"Error":error});
     }
 }
 module.exports = {

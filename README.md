@@ -42,9 +42,11 @@ To run this project, you will need to add the following environment variables to
 
 [Register Student: POST Method]
 http://localhost:3000/una/registerStudent
+[firstName, lastName, phoneNumber, email, userName, password, confirmPassword]
 
 [Login Student: POST Method]
 http://localhost:3000/una/login
+[Note: login via email OR userName AND password]
 
 [Show All Student: GET Method]
 http://localhost:3000/una/students
@@ -60,6 +62,7 @@ http://localhost:3000/una/student/:studentID
 
 [Add Course: POST Method]
 http://localhost:3000/una/addCourse/
+[courseName, credits, subjects]
 
 [Show Single Course: GET Method]
 http://localhost:3000/una/courses/:courseID

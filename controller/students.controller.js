@@ -1,27 +1,21 @@
-require('dotenv').config();                 // environment variables module
-const bcrypt = require('bcrypt');           // bcrypt module for password Hashings          
-const jwt = require('jsonwebtoken');        // JWT - Web Token module
+require('dotenv').config();                                             // environment variables module
+const bcrypt = require('bcrypt');                                       // bcrypt module for password Hashings          
+const jwt = require('jsonwebtoken');                                    // JWT - Web Token module
 const db = require('../Models/index');
-var RegisterStudents = db.Students;
-// Students Model from Models Folder
+var RegisterStudents = db.Students;                                     // Students Model from Models Folder                                                          
 require('../Middleware/verifyRegisteredStudent'); 
-// function built to Verify Students before sending into Database
 const {validationResult} = require('express-validator');    // Express Validator module for Data Sanitization
 
 
-const registerStudents = async (req, res)=>{
-                // This Function Registers Students || Putting students data into Database
+const registerStudents = async (req, res)=>{                // Insert students in database after validataion and sanitization
     try{
-        const errors = validationResult(req);
-        // express-validator is used to Sanitize requests before sending them into database       
-        if(!errors.isEmpty()){
-            // Sanitizing Errors catched here
+        const errors = validationResult(req);                                 
+        if(!errors.isEmpty()){  
             res.status(404).json({Message: errors});
             return;
         }
         const {firstName, lastName, phoneNumber, email, userName, password, confirmPassword} = req.body;
-        await RegisterStudents.create({
-                    // function used to insert data into database 
+        await RegisterStudents.create({ 
             firstName: firstName,
             lastName: lastName,
             phoneNumber: phoneNumber,
@@ -33,27 +27,22 @@ const registerStudents = async (req, res)=>{
             res.status(201).json({Message: `Registration Successful`});
         })
     }catch(error){
-        // Error in try Block will catch here
         res.status(404).json({"404":`Error: ${error}`});
     }
 }
 
 const login = async(req, res)=>{
-            // This Function is built for Login
     try{
         const email = req.body.email;
-        if(email){                  
-            // Check Email in request body
-            // Note : User Login is built Here in two ways by checking Eamil in body or by userName
+        if(email){                      // Email Check   
+                                        // Note : User Login is built Here in two ways by checking Eamil in body or by userName
             const student = await RegisterStudents.findOne({
-                // Finds email in Database!
                 where:{email: req.body.email}
             });
                 if(!(student)){
-                    // If Email Do not match the email in database
                     return res.status(404).json({Message: `Incorrect email- ${email}`});
                 }
-           const passwordCheck = await bcrypt.compare(req.body.password, student.password)
+                    const passwordCheck = await bcrypt.compare(req.body.password, student.password)
                     // bcrypt module Used Here for Password Hash
                 if(!passwordCheck){
                     return res.status(404).json({Message: "Incorrect Password"})
@@ -63,17 +52,15 @@ const login = async(req, res)=>{
                         accessToken: token
                     });
                 }
-        }else{
+        }else{                          // userName check
             const userName = req.body.userName;
-            const student = await RegisterStudents.findOne({
-                // Finds userName in Database 
+            const student = await RegisterStudents.findOne({ 
                 where:{userName: userName}
             });
             if(!(student)){
-                // If userName do not match the userName in Database
                 return res.status(404).json({Message: `Wrong User- ${userName}`});
             }
-       const passCheck = await bcrypt.compare(req.body.password, student.password)
+                const passCheck = await bcrypt.compare(req.body.password, student.password)
             if(!passCheck){
                 return res.status(404).json({Message: "Incorrect Password"})
             }else{
@@ -84,8 +71,7 @@ const login = async(req, res)=>{
             }
         }      
     }catch(error){
-        // Error in try Block will catch here
-        res.status(404).json({Msg: `Error ${error}`});
+            res.status(404).json({Msg: `Error ${error}`});
     }
 }
 
