@@ -9,7 +9,7 @@ const auth = (req, res, next)=>{
                 // req.studentId = student.id;                      
                 // console.log(student.id);                                         // Debugged either login id working properly?
             }else{
-                return res.status(401).json({"Invalid Token": "Access Unauthorized !"});
+                return res.status(401).json({"Token Missing!": "Access Unauthorized !"});
             }
         next();             // next() used to forward if everything is ok
     }catch(error){
