@@ -60,13 +60,24 @@ const updateStudentsById = async(req, res)=>{           // update sindle student
 }
 const deleteStudentById = async(req, res)=>{                    // delete single student
     try{
-            await dbGetAll.destroy({
-            where:{
-                id: req.params.studentID
+
+            const studentExists = await dbGetAll.findOne({          // find either students exists or not
+                where:{
+                    id: req.params.studentID
+                }
+            });
+
+            if(studentExists){
+                await dbGetAll.destroy({
+                    where:{
+                        id: req.params.studentID
+                    }
+                }).then(()=>{
+                    res.status(400).json({"Student": "Successfully Deleted"});
+                });
+            }else{
+                return res.status(404).json({'Student':'Not Found'});
             }
-        }).then(()=>{
-            res.status(400).json({"Student": "Successfully Deleted"});
-        });
     }catch(error){
             return res.status(404).json({Msg: `Error: ${error}`})
     }
