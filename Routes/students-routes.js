@@ -9,7 +9,7 @@ const {sanitizeStudentsRegisteration} = require('../Middleware/sanitizer.middlew
                             
         // Routes                            
 route.post('/registerStudent',sanitizeStudentsRegisteration,verifyRegisteredStudents,registerStudents);          
-route.post('/login',login);                     
+route.post('/login',sanitizeStudentsRegisteration,login);             // Sanitize Login Values                             
 route.get('/students',auth,getAllStudents);      
 route.get('/students/:studentID',auth,getStudentById);  
 route.put('/student/:studentID',auth,sanitizeStudentsRegisteration,verifyRegisteredStudents,updateStudentsById);
